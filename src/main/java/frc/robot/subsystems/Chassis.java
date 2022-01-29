@@ -31,8 +31,15 @@ public class Chassis extends SubsystemBase {
         rf_motor.setInverted(true);
         lf_motor.setInverted(true);
 
+        rf_motor.setIdleMode(CANSparkMax.IdleMode.kCoast);
+        rb_motor.setIdleMode(CANSparkMax.IdleMode.kCoast);
+        lf_motor.setIdleMode(CANSparkMax.IdleMode.kCoast);
+        lb_motor.setIdleMode(CANSparkMax.IdleMode.kCoast);
+
         left_motors = new MotorControllerGroup(lf_motor, lb_motor);
         right_motors = new MotorControllerGroup(rf_motor, rb_motor);
+
+
 
         diff_drive = new DifferentialDrive(left_motors, right_motors);
 
