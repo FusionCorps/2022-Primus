@@ -28,8 +28,19 @@ public class Chassis extends SubsystemBase {
         lf_motor = new CANSparkMax(LF_MOTOR_ID, kBrushless);
         lb_motor = new CANSparkMax(LB_MOTOR_ID, kBrushless);
 
+        rf_motor.restoreFactoryDefaults();
+        rb_motor.restoreFactoryDefaults();
+        lf_motor.restoreFactoryDefaults();
+        lb_motor.restoreFactoryDefaults();
+
         rf_motor.setInverted(true);
         lf_motor.setInverted(true);
+
+        rb_motor.setInverted(false);
+        lb_motor.setInverted(false);
+
+//        rb_motor.follow(rf_motor, true);
+//        lb_motor.follow(lf_motor, true);
 
         rf_motor.setIdleMode(CANSparkMax.IdleMode.kCoast);
         rb_motor.setIdleMode(CANSparkMax.IdleMode.kCoast);
@@ -41,12 +52,14 @@ public class Chassis extends SubsystemBase {
 
 
 
-        diff_drive = new DifferentialDrive(left_motors, right_motors);
+        diff_drive = new DifferentialDrive(lf_motor, rf_motor);
 
     }
 
     public void driveChassis(double fwd, double rot) {
-        diff_drive.curvatureDrive(fwd, rot, true);
+        diff_drive.curvatureDrive(fwd, rot, false);
+        diff_drive.feed();
+        System.out.println(rb_motor.getBusVoltage());
     }
 
 
