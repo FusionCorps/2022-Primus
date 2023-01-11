@@ -2,6 +2,8 @@ package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
+import edu.wpi.first.cscore.MjpegServer;
+import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
@@ -25,6 +27,10 @@ public class Chassis extends SubsystemBase {
 
     DifferentialDrive diff_drive;
 
+    UsbCamera camera_test;
+
+    MjpegServer camera_stream;
+
     public Chassis() {
 
         servo = new Servo(0);
@@ -44,6 +50,14 @@ public class Chassis extends SubsystemBase {
 
         rb_motor.setInverted(false);
         lb_motor.setInverted(false);
+
+//        camera_test = new UsbCamera("Driver Camera", 0);
+//
+//        camera_test.setResolution(320, 240);
+//        camera_test.setFPS(30);
+//
+//        camera_stream = new MjpegServer("DriverCamServer", 1182);
+//        camera_stream.setSource(camera_test);
 
 //        rb_motor.follow(rf_motor, true);
 //        lb_motor.follow(lf_motor, true);

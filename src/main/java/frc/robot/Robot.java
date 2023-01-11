@@ -36,10 +36,7 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
 
-    new Thread(() -> {
-      UsbCamera camera = CameraServer.startAutomaticCapture();
-      camera.setVideoMode(VideoMode.PixelFormat.kMJPEG, 160, 120, 30);
-    }).start();
+    CameraServer.startAutomaticCapture();
 
   }
 
